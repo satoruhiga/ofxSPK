@@ -38,6 +38,8 @@ public:
 
 	// only Spheric [0. - 1.]
 	void setAngles(float angle0, float angle1);
+	
+	void emit(int num_emit, SPK::Group *group);
 
 	operator SPK::Emitter* const () { return emitter; }
 	SPK::Emitter* get() const { return emitter; }

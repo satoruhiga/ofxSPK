@@ -20,9 +20,12 @@ public:
 	Group(SPK::Group *group) : group(group), model(group->getModel()) {}
 	virtual ~Group() { dispose(); }
 
-	size_t getNumActiveParticles() { return group->getParticles().getNbActive(); }
 	size_t getNumReserved() { return group->getParticles().getNbReserved(); }
 	void reserve(size_t size) { group->reallocate(size); }
+
+	size_t getNumActiveParticles() { return group->getParticles().getNbActive(); }
+	SPK::Particle& getParticle(size_t index) { return group->getParticle(index); }
+	
 
 	void dispose();
 
@@ -83,6 +86,13 @@ public:
 
 	void setRenderer(SPK::Renderer *renderer) { group->setRenderer(renderer); }
 
+	void emit(int num_emit, const ofVec3f& pos, const ofVec3f& vel = ofVec3f(0));
+	void emit(int num_emit, const ofVec3f& pos, SPK::Emitter *emitter);
+	void emit(int num_emit, SPK::Emitter *emitter);
+	
+	void lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, const ofVec3f& vel);
+	void lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, SPK::Emitter *emitter);
+	
 	operator SPK::Group* () const { return group; }
 	SPK::Group* get() const { return group; }
 

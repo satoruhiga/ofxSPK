@@ -25,7 +25,7 @@ ofxSPK::Emitter::Emitter(Type type)
 	
 	setZone(SPK::Point::create(SPK::Vector3D(0, 0, 0)));
 	
-	setFlow(250);
+	setFlow(0);
 	setForce(100, 180);
 }
 
@@ -90,4 +90,10 @@ void ofxSPK::Emitter::setAngles(float angle0, float angle1)
 	
 	SPK::SphericEmitter *e = (SPK::SphericEmitter*)emitter;
 	e->setAngles(angle0 * TWO_PI, angle1 * TWO_PI);
+}
+
+void ofxSPK::Emitter::emit(int num_emit, SPK::Group *group)
+{
+	update();
+	group->addParticles(num_emit, emitter);
 }

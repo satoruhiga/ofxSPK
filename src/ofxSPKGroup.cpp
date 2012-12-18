@@ -58,3 +58,28 @@ void ofxSPK::Group::removeModifier(SPK::Modifier *o)
 	group->removeModifier(o);
 	SPK_Destroy(o);
 }
+
+void ofxSPK::Group::emit(int num_emit, const ofVec3f& pos, const ofVec3f& vel)
+{
+	group->addParticles(num_emit, toSPK(pos), toSPK(vel));
+}
+
+void ofxSPK::Group::emit(int num_emit, const ofVec3f& pos, SPK::Emitter *emitter)
+{
+	group->addParticles(num_emit, toSPK(pos), emitter);
+}
+
+void ofxSPK::Group::emit(int num_emit, SPK::Emitter *emitter)
+{
+	group->addParticles(num_emit, emitter);
+}
+
+void ofxSPK::Group::lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, const ofVec3f& vel)
+{
+	group->addParticles(toSPK(start), toSPK(end), toSPK(vel), distance);
+}
+
+void ofxSPK::Group::lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, SPK::Emitter *emitter)
+{
+	group->addParticles(toSPK(start), toSPK(end), emitter, distance);
+}
