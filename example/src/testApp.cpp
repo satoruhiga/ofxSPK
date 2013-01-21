@@ -22,9 +22,10 @@ void testApp::setup()
 	group = sys.createGroup();
 	group.setColor(ofxSPK::RangeC(ofColor(255, 255, 0, 255), ofColor(255, 0, 0, 255)),
 				   ofxSPK::RangeC(ofColor(255, 0, 255, 0), ofColor(255, 255, 0, 0)));
-	group.setLifeTime(1);
+	
+	group.setLifeTime(10);
 	group.setFriction(0.1);
-	group.setSize(ofxSPK::RangeF(1), ofxSPK::RangeF(400, 1000));
+	group.setSize(ofxSPK::RangeF(1), ofxSPK::RangeF(400, 100));
 
 	group.setGravity(ofVec3f(0, 0, 0));
 
@@ -35,14 +36,15 @@ void testApp::setup()
 	em.setFlow(1000);
 	em.setForce(100, 1350);
 
-//	em.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(0, 0, 0)), 100), false);
 	em.setAngles(0.0, 0.1);
 
 	mod = group.createModifier(ofxSPK::Modifier::POINT_MASS);
+	mod.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(0, 0, 0)), 4000), false);
+
 	mod.get<SPK::PointMass>()->setMass(200000);
 
 	mod2 = group.createModifier(ofxSPK::Modifier::POINT_MASS);
-	mod2.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(0, 0, 0)), 200), false);
+	mod2.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(0, 0, 0)), 800), false);
 	mod2.get<SPK::PointMass>()->setMass(-300000);
 }
 
@@ -65,14 +67,13 @@ void testApp::update()
 	mod.update();
 	mod2.update();
 
+	mod.setPosition(ofSignedNoise(100, 0, 0, ofGetElapsedTimef() * 0.1) * 1000,
+				   ofSignedNoise(0, 100, 0, ofGetElapsedTimef() * 0.1) * 1000,
+				   ofSignedNoise(0, 0, 100, ofGetElapsedTimef() * 0.1) * 1000);
 
-//	mod.setPosition(ofSignedNoise(100, 0, 0, ofGetElapsedTimef() * 0.5) * 1000,
-//				   ofSignedNoise(0, 100, 0, ofGetElapsedTimef() * 0.5) * 1000,
-//				   ofSignedNoise(0, 0, 100, ofGetElapsedTimef() * 0.5) * 1000);
-//
-//	mod2.setPosition(ofSignedNoise(500, 0, 0, ofGetElapsedTimef() * 0.5) * 200,
-//					ofSignedNoise(0, 500, 0, ofGetElapsedTimef() * 0.5) * 200,
-//					ofSignedNoise(0, 0, 500, ofGetElapsedTimef() * 0.5) * 200);
+	mod2.setPosition(ofSignedNoise(500, 0, 0, ofGetElapsedTimef() * 0.5) * 200,
+					ofSignedNoise(0, 500, 0, ofGetElapsedTimef() * 0.5) * 200,
+					ofSignedNoise(0, 0, 500, ofGetElapsedTimef() * 0.5) * 200);
 
 	ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
@@ -80,7 +81,7 @@ void testApp::update()
 //--------------------------------------------------------------
 void testApp::draw()
 {
-	
+	ofEnableBlendMode(OF_BLENDMODE_ADD);
 	
 	cam.begin();
 
@@ -88,14 +89,9 @@ void testApp::draw()
 	sys.draw();
 
 	em.draw();
-
-//	mod.draw();
-//	mod2.draw();
-//
-//	mod2.transformGL();
-//	ofNoFill();
-//	ofSphere(100);
-//	mod2.restoreTransformGL();
+	
+	mod.draw();
+	mod2.draw();
 
 	cam.end();
 }
