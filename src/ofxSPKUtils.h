@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ofMain.h"
+
 #include "SPK.h"
 
 namespace ofxSPK
@@ -14,6 +16,8 @@ inline ofVec3f toOF(const SPK::Vector3D &v)
 {
 	return ofVec3f(v.x, v.y, v.z);
 }
+	
+void drawZone(SPK::Zone *zone, const ofMatrix4x4& m);
 
 template <typename T>
 struct Range

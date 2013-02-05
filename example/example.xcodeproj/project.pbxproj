@@ -55,6 +55,7 @@
 		6095F50F1670F875002C2866 /* ofxSPKRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6095F5051670F875002C2866 /* ofxSPKRenderer.cpp */; };
 		6095F5101670F875002C2866 /* ofxSPKSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6095F5071670F875002C2866 /* ofxSPKSystem.cpp */; };
 		6095F5111670F875002C2866 /* ofxSPKZone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6095F5091670F875002C2866 /* ofxSPKZone.cpp */; };
+		60C1A83F16C1853F003E02B8 /* ofxSPKUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60C1A83E16C1853F003E02B8 /* ofxSPKUtils.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -217,6 +218,7 @@
 		6095F5091670F875002C2866 /* ofxSPKZone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSPKZone.cpp; sourceTree = "<group>"; };
 		6095F50A1670F875002C2866 /* ofxSPKZone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSPKZone.h; sourceTree = "<group>"; };
 		6095F51716711D17002C2866 /* ofxSPKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSPKUtils.h; sourceTree = "<group>"; };
+		60C1A83E16C1853F003E02B8 /* ofxSPKUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSPKUtils.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -573,6 +575,7 @@
 				6095F5061670F875002C2866 /* ofxSPKRenderer.h */,
 				6095F5091670F875002C2866 /* ofxSPKZone.cpp */,
 				6095F50A1670F875002C2866 /* ofxSPKZone.h */,
+				60C1A83E16C1853F003E02B8 /* ofxSPKUtils.cpp */,
 				6095F51716711D17002C2866 /* ofxSPKUtils.h */,
 				6095F4FD1670F875002C2866 /* ofxSPK.cpp */,
 				6095F4FE1670F875002C2866 /* ofxSPK.h */,
@@ -802,6 +805,7 @@
 				6095F50F1670F875002C2866 /* ofxSPKRenderer.cpp in Sources */,
 				6095F5101670F875002C2866 /* ofxSPKSystem.cpp in Sources */,
 				6095F5111670F875002C2866 /* ofxSPKZone.cpp in Sources */,
+				60C1A83F16C1853F003E02B8 /* ofxSPKUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

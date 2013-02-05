@@ -59,7 +59,7 @@ namespace SPK
 	{
 	    float cRadius = full ? random(0.0f,radius) : radius,
             cLength = full ? random(0.0f,length)-length*0.5f : length,
-            cAngle = random(0.0f,3.15f); // 3.15 > PI, but it has no importance here...
+            cAngle = random(0.0f,3.15f * 2); // 3.15 > PI, but it has no importance here... // ofxSPK Changed: Why it was not TWO_PI???
 
 	    // We need at least two points to compute a base
 	    Vector3D rPoint = getTransformedPosition() + Vector3D(10.0f,10.0f,10.0f);

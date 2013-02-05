@@ -58,8 +58,9 @@ protected:
 
 	void customDraw()
 	{
-		// TODO: draw emitter
 		ofDrawAxis(5);
+		
+		drawZone(getZone(), getLocalTransformMatrix());
 	}
 };
 
