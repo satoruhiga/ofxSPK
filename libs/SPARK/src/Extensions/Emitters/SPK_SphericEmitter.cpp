@@ -25,7 +25,7 @@
 
 namespace SPK
 {
-	const float SphericEmitter::__PI = 3.1415926535897932384626433832795f;
+	const float SphericEmitter::PI = 3.1415926535897932384626433832795f;
 
 	SphericEmitter::SphericEmitter(const Vector3D& direction,float angleA,float angleB) :
 		Emitter()
@@ -47,8 +47,8 @@ namespace SPK
 		if (angleB < angleA)
 			std::swap(angleA,angleB);
 
-		angleA = std::min(2.0f * __PI,std::max(0.0f,angleA));
-		angleB = std::min(2.0f * __PI,std::max(0.0f,angleB));
+		angleA = std::min(2.0f * PI,std::max(0.0f,angleA));
+		angleB = std::min(2.0f * PI,std::max(0.0f,angleB));
 
 		angleMin = angleA;
 		angleMax = angleB;
@@ -102,7 +102,7 @@ namespace SPK
 	{
 		float a = random(cosAngleMax,cosAngleMin);
 		float theta = std::acos(a);
-		float phi = random(0.0f,2.0f * __PI);
+		float phi = random(0.0f,2.0f * PI);
 
 		float sinTheta = std::sin(theta);
 		float x = sinTheta * std::cos(phi);
