@@ -21,7 +21,6 @@ public:
 
 	Group() : group(NULL) {}
 	Group(SPK::Group *group) : group(group) {}
-	virtual ~Group() { exit(); }
 
 	//
 	
@@ -31,7 +30,7 @@ public:
 	//
 	
 	void setup(SPK::System *system);
-	void exit();
+	void dispose();
 	
 	//
 	
@@ -84,13 +83,12 @@ public:
 	
 	//
 	
-	SPK::Emitter* createEmitter(ofxSPK::Emitter::Type type);
-	void addEmitter(SPK::Emitter *o);
-	void removeEmitter(SPK::Emitter *o);
-
-	SPK::Modifier* createModifier(ofxSPK::Modifier::Type type);
-	void addModifier(SPK::Modifier *o);
-	void removeModifier(SPK::Modifier *o);
+//	void addEmitter(SPK::Emitter *o);
+//	void removeEmitter(SPK::Emitter *o);
+//
+//	SPK::Modifier* createModifier(ofxSPK::Modifier::Type type);
+//	void addModifier(SPK::Modifier *o);
+//	void removeModifier(SPK::Modifier *o);
 	
 	//
 

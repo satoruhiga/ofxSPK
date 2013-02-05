@@ -5,7 +5,7 @@
 void ofxSPK::Group::setup(SPK::System *system)
 {
 	// cleanup
-	exit();
+	dispose();
 	
 	this->group = new SPK::Group;
 	this->system = system;
@@ -36,7 +36,7 @@ void ofxSPK::Group::setup(SPK::System *system)
 	system->addGroup(group);
 }
 
-void ofxSPK::Group::exit()
+void ofxSPK::Group::dispose()
 {
 	if (group == NULL) return;
 	
@@ -64,41 +64,34 @@ ofVec3f ofxSPK::Group::getGravity() const
 	return toOF(group->getGravity());
 }
 
-SPK::Emitter* ofxSPK::Group::createEmitter(ofxSPK::Emitter::Type type)
-{
-	ofxSPK::Emitter emitter(type);
-	addEmitter(emitter);
-	return emitter;
-}
-
-void ofxSPK::Group::addEmitter(SPK::Emitter *o)
-{
-	group->addEmitter(o);
-}
-
-void ofxSPK::Group::removeEmitter(SPK::Emitter *o)
-{
-	group->removeEmitter(o);
-	SPK_Destroy(o);
-}
-
-SPK::Modifier* ofxSPK::Group::createModifier(ofxSPK::Modifier::Type type)
-{
-	ofxSPK::Modifier modifier(type);
-	addModifier(modifier);
-	return modifier;
-}
-
-void ofxSPK::Group::addModifier(SPK::Modifier *o)
-{
-	group->addModifier(o);
-}
-
-void ofxSPK::Group::removeModifier(SPK::Modifier *o)
-{
-	group->removeModifier(o);
-	SPK_Destroy(o);
-}
+//void ofxSPK::Group::addEmitter(SPK::Emitter *o)
+//{
+//	group->addEmitter(o);
+//}
+//
+//void ofxSPK::Group::removeEmitter(SPK::Emitter *o)
+//{
+//	group->removeEmitter(o);
+//	SPK_Destroy(o);
+//}
+//
+//SPK::Modifier* ofxSPK::Group::createModifier(ofxSPK::Modifier::Type type)
+//{
+//	ofxSPK::Modifier modifier(type);
+//	addModifier(modifier);
+//	return modifier;
+//}
+//
+//void ofxSPK::Group::addModifier(SPK::Modifier *o)
+//{
+//	group->addModifier(o);
+//}
+//
+//void ofxSPK::Group::removeModifier(SPK::Modifier *o)
+//{
+//	group->removeModifier(o);
+//	SPK_Destroy(o);
+//}
 
 void ofxSPK::Group::emitStatic(int num_emit, const ofVec3f& pos)
 {

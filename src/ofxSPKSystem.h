@@ -16,7 +16,6 @@ public:
 
 	System() : system(NULL) {}
 	System(SPK::System *system) : system(system) {}
-	virtual ~System() { exit(); }
 
 	void setup()
 	{
@@ -24,7 +23,7 @@ public:
 		system = SPK::System::create();
 	}
 
-	void exit()
+	void dispose()
 	{
 		SPK_Destroy(system);
 		system = NULL;
