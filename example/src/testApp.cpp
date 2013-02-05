@@ -33,26 +33,26 @@ void testApp::setup()
 	em.setup(SPK::StaticEmitter::create(), group);
 	em.setForce(300, 500);
 	
-//	em.setZone(SPK::Line::create(ofxSPK::toSPK(ofVec3f(100, 0, 0)),
-//								 ofxSPK::toSPK(ofVec3f(200, 0, 0))));
+//	em.setZone(SPK::Line::create(toSPK(ofVec3f(100, 0, 0)),
+//								 toSPK(ofVec3f(200, 0, 0))));
 	
 //	em.setZone(SPK::Point::create());
-//	em.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(100, 0, 0)), 50));
+//	em.setZone(SPK::Sphere::create(toSPK(ofVec3f(100, 0, 0)), 50));
 
-//	em.setZone(SPK::Ring::create(ofxSPK::toSPK(ofVec3f(100, 0, 0)), ofxSPK::toSPK(ofVec3f(0, 1, 0)), 40, 160), false);
+//	em.setZone(SPK::Ring::create(toSPK(ofVec3f(100, 0, 0)), toSPK(ofVec3f(0, 1, 0)), 40, 160), false);
 	
-//	em.setZone(SPK::Plane::create(ofxSPK::toSPK(ofVec3f(100, 0, 0)), ofxSPK::toSPK(ofVec3f(0, 1, 0))), true);
+//	em.setZone(SPK::Plane::create(toSPK(ofVec3f(100, 0, 0)), toSPK(ofVec3f(0, 1, 0))), true);
 
-//	em.setZone(SPK::Cylinder::create(ofxSPK::toSPK(ofVec3f(100, 0, 0)), ofxSPK::toSPK(ofVec3f(0, 1, 0)), 100, 200));
+//	em.setZone(SPK::Cylinder::create(toSPK(ofVec3f(100, 0, 0)), toSPK(ofVec3f(0, 1, 0)), 100, 200));
 	
-	em.setZone(SPK::AABox::create(ofxSPK::toSPK(ofVec3f(100, 0, 0)), ofxSPK::toSPK(ofVec3f(100, 100, 100))), false);
+	em.setZone(SPK::AABox::create(toSPK(ofVec3f(100, 0, 0)), toSPK(ofVec3f(100, 100, 100))), false);
 
 }
 
 //--------------------------------------------------------------
 void testApp::update()
 {
-	sys->setCameraPosition(ofxSPK::toSPK(cam.getPosition()));
+	sys->setCameraPosition(toSPK(cam.getPosition()));
 	sys.update();
 	
 	ofVec3f p;

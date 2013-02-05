@@ -7,16 +7,6 @@
 namespace ofxSPK
 {
 	
-inline SPK::Vector3D toSPK(const ofVec3f &v)
-{
-	return SPK::Vector3D(v.x, v.y, v.z);
-}
-
-inline ofVec3f toOF(const SPK::Vector3D &v)
-{
-	return ofVec3f(v.x, v.y, v.z);
-}
-	
 void drawZone(SPK::Zone *zone, const ofMatrix4x4& mat);
 
 template <typename T>
@@ -63,4 +53,14 @@ protected:
 	void onScaleChanged() { updateTransform(); }
 };
 	
+}
+
+inline SPK::Vector3D toSPK(const ofVec3f &v)
+{
+	return SPK::Vector3D(v.x, v.y, v.z);
+}
+
+inline ofVec3f toOF(const SPK::Vector3D &v)
+{
+	return ofVec3f(v.x, v.y, v.z);
 }
