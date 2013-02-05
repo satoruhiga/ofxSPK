@@ -52,6 +52,8 @@
 #include "Extensions/Zones/SPK_Plane.h"
 #include "Extensions/Zones/SPK_Line.h" // 1.01
 #include "Extensions/Zones/SPK_Ring.h" // 1.05
+#include "Extensions/Zones/SPK_ZoneIntersection.h"
+#include "Extensions/Zones/SPK_ZoneUnion.h"
 #include "Extensions/Zones/SPK_Cylinder.h"
 
 // Emitters
