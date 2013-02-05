@@ -94,13 +94,11 @@ public:
 	
 	//
 
-	void emit(int num_emit, const ofVec3f& pos, const ofVec3f& vel = ofVec3f(0));
-	void emit(int num_emit, const ofVec3f& pos, SPK::Emitter *emitter);
-	void emit(int num_emit, SPK::Emitter *emitter);
+	void emitStatic(int num_emit, const ofVec3f& pos);
+	void emitRandom(int num_emit, const ofVec3f& pos, const RangeF& vel = RangeF(0, 30));
+	void emitStraight(int num_emit, const ofVec3f& pos, const RangeF& vel = RangeF(0, 30), const ofVec3f& direction = ofVec3f(0, 1, 0));
+	void emitSpheric(int num_emit, const ofVec3f& pos, const RangeF& vel, const ofVec3f& direction, const RangeF& angles = RangeF(0, 0.3));
 	
-	void lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, const ofVec3f& vel);
-	void lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, SPK::Emitter *emitter);
-
 	//
 	
 	void setRenderer(SPK::Renderer *renderer) { group->setRenderer(renderer); }

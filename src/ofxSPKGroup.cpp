@@ -100,27 +100,33 @@ void ofxSPK::Group::removeModifier(SPK::Modifier *o)
 	SPK_Destroy(o);
 }
 
-void ofxSPK::Group::emit(int num_emit, const ofVec3f& pos, const ofVec3f& vel)
+void ofxSPK::Group::emitStatic(int num_emit, const ofVec3f& pos)
 {
-	group->addParticles(num_emit, toSPK(pos), toSPK(vel));
+	static SPK::StaticEmitter em;
+	group->addParticles(num_emit, toSPK(pos), &em);
 }
 
-void ofxSPK::Group::emit(int num_emit, const ofVec3f& pos, SPK::Emitter *emitter)
+void ofxSPK::Group::emitRandom(int num_emit, const ofVec3f& pos, const RangeF& vel)
 {
-	group->addParticles(num_emit, toSPK(pos), emitter);
+	static SPK::RandomEmitter em;
+	em.setForce(vel.min, vel.max);
+	group->addParticles(num_emit, toSPK(pos), &em);
 }
 
-void ofxSPK::Group::emit(int num_emit, SPK::Emitter *emitter)
+void ofxSPK::Group::emitStraight(int num_emit, const ofVec3f& pos, const RangeF& vel, const ofVec3f& direction)
 {
-	group->addParticles(num_emit, emitter);
+	static SPK::StraightEmitter em;
+	em.setForce(vel.min, vel.max);
+	em.setDirection(toSPK(direction));
+	group->addParticles(num_emit, toSPK(pos), &em);
 }
 
-void ofxSPK::Group::lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, const ofVec3f& vel)
+void ofxSPK::Group::emitSpheric(int num_emit, const ofVec3f& pos, const RangeF& vel, const ofVec3f& direction, const RangeF& angles)
 {
-	group->addParticles(toSPK(start), toSPK(end), toSPK(vel), distance);
+	static SPK::SphericEmitter em;
+	em.setForce(vel.min, vel.max);
+	em.setDirection(toSPK(direction));
+	em.setAngles(angles.min * TWO_PI, angles.max * TWO_PI);
+	group->addParticles(num_emit, toSPK(pos), &em);
 }
 
-void ofxSPK::Group::lineEmit(float distance, const ofVec3f& start, const ofVec3f& end, SPK::Emitter *emitter)
-{
-	group->addParticles(toSPK(start), toSPK(end), emitter, distance);
-}

@@ -20,9 +20,9 @@ void testApp::setup()
 	group.setColor(ofxSPK::RangeC(ofColor(255, 255, 0, 255), ofColor(255, 0, 0, 255)),
 				   ofxSPK::RangeC(ofColor(255, 0, 255, 0), ofColor(255, 255, 0, 0)));
 	
-	group.setLifeTime(10);
+	group.setLifeTime(5);
 	group.setFriction(0.1);
-	group.setSize(ofxSPK::RangeF(1), ofxSPK::RangeF(400, 100));
+	group.setSize(10);
 
 	group.setGravity(ofVec3f(0, 0, 0));
 
@@ -34,7 +34,17 @@ void testApp::update()
 {
 	sys->setCameraPosition(ofxSPK::toSPK(cam.getPosition()));
 	sys.update();
+	
+	ofVec3f p;
+	p.x = ofSignedNoise(100, 0, 0, ofGetElapsedTimef()) * 300;
+	p.y = ofSignedNoise(0, 100, 0, ofGetElapsedTimef()) * 300;
+	p.z = ofSignedNoise(0, 0, 100, ofGetElapsedTimef()) * 300;
 
+//	group.emitStatic(10, p);
+	group.emitRandom(10, p, ofxSPK::RangeF(10, 40));
+//	group.emitStraight(10, p);
+//	group.emitSpheric(10, p, ofxSPK::RangeF(10, 40), p.crossed(ofVec3f(1, 0, 0)), ofxSPK::RangeF(0, 0.2));
+	
 	ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
 
