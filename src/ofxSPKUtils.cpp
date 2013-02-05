@@ -1,11 +1,11 @@
 #include "ofxSPKUtils.h"
 
-void ofxSPK::drawZone(SPK::Zone *zone, const ofMatrix4x4& m)
+void ofxSPK::drawZone(SPK::Zone *zone, const ofMatrix4x4& mat)
 {
 	string class_name = zone->getClassName();
 	const SPK::Vector3D& p = zone->getPosition();
 	
-	ofPushMatrix();
+	glPushMatrix();
 	ofPushStyle();
 	
 	ofNoFill();
@@ -85,17 +85,17 @@ void ofxSPK::drawZone(SPK::Zone *zone, const ofMatrix4x4& m)
 		SPK::AABox *o = (SPK::AABox*)zone;
 		const SPK::Vector3D &n = o->getDimension();
 
-		ofMatrix4x4 mm = m.getRotate().inverse();
+		ofMatrix4x4 m = mat.getRotate().inverse();
 		
-		ofVec3f v = m.getRotate() * toOF(p);
-		mm.glTranslate(v);
-		mm.glScale(n.x, n.y, n.z);
+		ofVec3f v = mat.getRotate() * toOF(p);
+		m.glTranslate(v);
+		m.glScale(n.x, n.y, n.z);
 		
-		glMultMatrixf(mm.getPtr());
+		glMultMatrixf(m.getPtr());
 		
 		ofBox(1);
 	}
 	
 	ofPopStyle();
-	ofPopMatrix();
+	glPopMatrix();
 }

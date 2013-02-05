@@ -82,15 +82,6 @@ public:
 	}
 	
 	//
-	
-//	void addEmitter(SPK::Emitter *o);
-//	void removeEmitter(SPK::Emitter *o);
-//
-//	SPK::Modifier* createModifier(ofxSPK::Modifier::Type type);
-//	void addModifier(SPK::Modifier *o);
-//	void removeModifier(SPK::Modifier *o);
-	
-	//
 
 	void emitStatic(int num_emit, const ofVec3f& pos);
 	void emitRandom(int num_emit, const ofVec3f& pos, const RangeF& vel = RangeF(0, 30));

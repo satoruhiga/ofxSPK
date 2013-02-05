@@ -17,7 +17,7 @@ inline ofVec3f toOF(const SPK::Vector3D &v)
 	return ofVec3f(v.x, v.y, v.z);
 }
 	
-void drawZone(SPK::Zone *zone, const ofMatrix4x4& m);
+void drawZone(SPK::Zone *zone, const ofMatrix4x4& mat);
 
 template <typename T>
 struct Range
