@@ -22,7 +22,7 @@ void testApp::setup()
 	
 	group.setLifeTime(5);
 	group.setFriction(0.1);
-	group.setSize(10);
+	group.setSize(1);
 
 	group.setGravity(ofVec3f(0, 0, 0));
 
