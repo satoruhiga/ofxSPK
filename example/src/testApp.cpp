@@ -6,9 +6,6 @@ ofEasyCam cam;
 
 ofxSPK::System sys;
 ofxSPK::Group group;
-ofxSPK::Emitter em;
-ofxSPK::Modifier mod;
-ofxSPK::Modifier mod2;
 
 //--------------------------------------------------------------
 void testApp::setup()
@@ -19,7 +16,7 @@ void testApp::setup()
 
 	sys.setup();
 
-	group = sys.createGroup();
+	group.setup(sys);
 	group.setColor(ofxSPK::RangeC(ofColor(255, 255, 0, 255), ofColor(255, 0, 0, 255)),
 				   ofxSPK::RangeC(ofColor(255, 0, 255, 0), ofColor(255, 255, 0, 0)));
 	
@@ -30,50 +27,13 @@ void testApp::setup()
 	group.setGravity(ofVec3f(0, 0, 0));
 
 	group.reserve(10000);
-
-	em = group.createEmitter(ofxSPK::Emitter::SPHERIC);
-
-	em.setFlow(1000);
-	em.setForce(100, 1350);
-
-	em.setAngles(0.0, 0.1);
-
-	mod = group.createModifier(ofxSPK::Modifier::POINT_MASS);
-	mod.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(0, 0, 0)), 4000), false);
-
-	mod.get<SPK::PointMass>()->setMass(200000);
-
-	mod2 = group.createModifier(ofxSPK::Modifier::POINT_MASS);
-	mod2.setZone(SPK::Sphere::create(ofxSPK::toSPK(ofVec3f(0, 0, 0)), 800), false);
-	mod2.get<SPK::PointMass>()->setMass(-300000);
 }
 
 //--------------------------------------------------------------
 void testApp::update()
 {
-	sys.get()->setCameraPosition(ofxSPK::toSPK(cam.getPosition()));
+	sys->setCameraPosition(ofxSPK::toSPK(cam.getPosition()));
 	sys.update();
-
-	em.setPosition(ofSignedNoise(1, 0, 0, ofGetElapsedTimef() * 0.5) * 1400,
-				   ofSignedNoise(0, 1, 0, ofGetElapsedTimef() * 0.5) * 1400,
-				   ofSignedNoise(0, 0, 1, ofGetElapsedTimef() * 0.5) * 1400);
-
-	em.tilt(0.1);
-	em.pan(15);
-	em.roll(-3.5);
-
-	em.update();
-
-	mod.update();
-	mod2.update();
-
-	mod.setPosition(ofSignedNoise(100, 0, 0, ofGetElapsedTimef() * 0.1) * 1000,
-				   ofSignedNoise(0, 100, 0, ofGetElapsedTimef() * 0.1) * 1000,
-				   ofSignedNoise(0, 0, 100, ofGetElapsedTimef() * 0.1) * 1000);
-
-	mod2.setPosition(ofSignedNoise(500, 0, 0, ofGetElapsedTimef() * 0.5) * 200,
-					ofSignedNoise(0, 500, 0, ofGetElapsedTimef() * 0.5) * 200,
-					ofSignedNoise(0, 0, 500, ofGetElapsedTimef() * 0.5) * 200);
 
 	ofSetWindowTitle(ofToString(ofGetFrameRate()));
 }
@@ -87,11 +47,6 @@ void testApp::draw()
 
 	ofEnableAlphaBlending();
 	sys.draw();
-
-	em.draw();
-	
-	mod.draw();
-	mod2.draw();
 
 	cam.end();
 }

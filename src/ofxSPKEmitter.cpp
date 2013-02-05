@@ -29,7 +29,7 @@ ofxSPK::Emitter::Emitter(Type type)
 	setForce(100, 180);
 }
 
-void ofxSPK::Emitter::dispose()
+void ofxSPK::Emitter::exit()
 {
 	if (emitter == NULL) return;
 	

@@ -25,9 +25,9 @@ public:
 	Emitter() : emitter(NULL) {}
 	Emitter(Type type);
 	Emitter(SPK::Emitter *emitter) : emitter(emitter) { guessType(); }
-	~Emitter() { dispose(); }
+	~Emitter() { exit(); }
 
-	void dispose();
+	void exit();
 
 	void update();
 
