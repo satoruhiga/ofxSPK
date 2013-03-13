@@ -40,8 +40,8 @@ public:
 		assert(system);
 		system->render();
 	}
-
-//	SPK::Group* createGroup();
+	
+	void debugDraw();
 	
 	void addGroup(SPK::Group *group);
 	void removeGroup(SPK::Group *group);

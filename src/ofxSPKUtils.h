@@ -6,8 +6,6 @@
 
 namespace ofxSPK
 {
-	
-void drawZone(SPK::Zone *zone, const ofMatrix4x4& mat);
 
 template <typename T>
 struct Range
@@ -58,6 +56,11 @@ protected:
 inline SPK::Vector3D toSPK(const ofVec3f &v)
 {
 	return SPK::Vector3D(v.x, v.y, v.z);
+}
+
+inline SPK::Vector3D toSPK(float x, float y, float z)
+{
+	return SPK::Vector3D(x, y, z);
 }
 
 inline ofVec3f toOF(const SPK::Vector3D &v)

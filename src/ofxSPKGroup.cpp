@@ -14,13 +14,14 @@ void ofxSPK::Group::setup(SPK::System *system)
 		// setup model defaults
 		int color_flags = SPK::FLAG_RED | SPK::FLAG_GREEN | SPK::FLAG_BLUE | SPK::FLAG_ALPHA;
 
-		int enable_flags = color_flags | SPK::FLAG_SIZE | SPK::FLAG_CUSTOM_0;
+		int enable_flags = color_flags | SPK::FLAG_SIZE | SPK::FLAG_CUSTOM_0 | SPK::FLAG_MASS;
 		int mutable_flags = color_flags | SPK::FLAG_SIZE | SPK::FLAG_CUSTOM_0;
-		int random_flags = color_flags | SPK::FLAG_SIZE;
+		int random_flags = color_flags | SPK::FLAG_SIZE | SPK::FLAG_MASS;
 		int interpolated_flags = SPK::FLAG_NONE;
 		
 		SPK::Model *model = SPK::Model::create(enable_flags, mutable_flags, random_flags, interpolated_flags);
 		model->setParam(SPK::PARAM_CUSTOM_0, 1, 0);
+		model->setParam(SPK::PARAM_MASS, 1);
 		setModel(model);
 	}
 	
@@ -94,3 +95,19 @@ void ofxSPK::Group::emitSpheric(int num_emit, const ofVec3f& pos, const RangeF& 
 	group->addParticles(num_emit, toSPK(pos), &em);
 }
 
+void ofxSPK::Group::debugDraw()
+{
+	for (int i = 0; i < group->getNbEmitters(); i++)
+	{
+		SPK::Emitter *o = group->getEmitter(i);
+		ofMatrix4x4 m(o->getWorldTransform());
+		ofxSPK::Zone::debugDraw(o->getClassName(), o->getZone(), m, ofColor(255, 0, 0));
+	}
+	
+	for (int i = 0; i < group->getNbModifiers(); i++)
+	{
+		SPK::Modifier *o = group->getModifier(i);
+		ofMatrix4x4 m(o->getWorldTransform());
+		ofxSPK::Zone::debugDraw(o->getClassName(), o->getZone(), m, ofColor(0, 255, 0));
+	}
+}

@@ -15,6 +15,12 @@ namespace ofxSPK
 class ofxSPK::Emitter : public TransformableProxy<ofxSPK::Emitter>
 {
 public:
+	
+	typedef SPK::StaticEmitter $Static;
+	typedef SPK::RandomEmitter $Random;
+	typedef SPK::NormalEmitter $Normal;
+	typedef SPK::SphericEmitter $Spheric;
+	typedef SPK::StraightEmitter $Straight;
 
 	Emitter() : emitter(NULL) {}
 	Emitter(SPK::Emitter *emitter) : emitter(emitter) {}
@@ -56,11 +62,5 @@ protected:
 	SPK::Emitter *emitter;
 	SPK::Group *group;
 
-	void customDraw()
-	{
-		ofDrawAxis(5);
-		
-		drawZone(getZone(), getLocalTransformMatrix());
-	}
 };
 
