@@ -1,56 +1,33 @@
 #include "ofxSPKModifier.h"
 
-ofxSPK::Modifier::Modifier(ofxSPK::Modifier::Type type) : type(type)
+void ofxSPK::Modifier::setup(SPK::Modifier *modifier, SPK::Group *group)
 {
-	if (type == ofxSPK::Modifier::COLLISION)
-	{
-		modifier = SPK::Collision::create();
-	}
-	else if (type == ofxSPK::Modifier::LINEAR_FORCE)
-	{
-		modifier = SPK::LinearForce::create();
-	}
-	else if (type == ofxSPK::Modifier::OBSTACLE)
-	{
-		modifier = SPK::Obstacle::create();
-	}
-	else if (type == ofxSPK::Modifier::ROTATOR)
-	{
-		modifier = SPK::Rotator::create();
-	}
-	else if (type == ofxSPK::Modifier::DESTROYER)
-	{
-		modifier = SPK::Destroyer::create();
-	}
-	else if (type == ofxSPK::Modifier::MODIFIER_GROUP)
-	{
-		modifier = SPK::ModifierGroup::create();
-	}
-	else if (type == ofxSPK::Modifier::POINT_MASS)
-	{
-		modifier = SPK::PointMass::create();
-	}
-	else if (type == ofxSPK::Modifier::VORTEX)
-	{
-		modifier = SPK::Vortex::create();
-	}
-	
-	setZone(SPK::Point::create(SPK::Vector3D(0, 0, 0)));
+	this->group = group;
+	setModifier(modifier);
 }
 
-void ofxSPK::Modifier::update()
+void ofxSPK::Modifier::dispose()
 {
-	if (!modifier) return;
+	if (modifier == NULL) return;
 	
-	ofMatrix4x4 m = getGlobalTransformMatrix();
-	modifier->setTransform(m.getPtr());
-	modifier->updateTransform();
+	setZone(NULL);
+	
+	group->removeModifier(modifier);
+	SPK_Destroy(modifier);
+	
+	modifier = NULL;
+}
+
+void ofxSPK::Modifier::setModifier(SPK::Modifier *modifier)
+{
+	dispose();
+	
+	this->modifier = modifier;
+	group->addModifier(modifier);
 }
 
 void ofxSPK::Modifier::setZone(SPK::Zone *o, bool full)
 {
-	if (o == NULL) return;
-	
 	SPK::Zone *zone = modifier->getZone();
 	if (zone)
 		SPK_Destroy(zone);

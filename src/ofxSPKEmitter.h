@@ -5,60 +5,62 @@
 #include "SPK.h"
 #include "SPK_GL.h"
 
+#include "ofxSPKUtils.h"
+
 namespace ofxSPK
 {
+	class Emitter;
+}
 
-class Emitter : public ofNode
+class ofxSPK::Emitter : public TransformableProxy<ofxSPK::Emitter>
 {
 public:
-
-	enum Type
-	{
-		UNKNOWN,
-		STATIC,
-		STRAIGHT,
-		SPHERIC,
-		RANDOM,
-		NORMAL
-	};
+	
+	typedef SPK::StaticEmitter $Static;
+	typedef SPK::RandomEmitter $Random;
+	typedef SPK::NormalEmitter $Normal;
+	typedef SPK::SphericEmitter $Spheric;
+	typedef SPK::StraightEmitter $Straight;
 
 	Emitter() : emitter(NULL) {}
-	Emitter(Type type);
-	Emitter(SPK::Emitter *emitter) : emitter(emitter) { guessType(); }
-	~Emitter() { dispose(); }
+	Emitter(SPK::Emitter *emitter) : emitter(emitter) {}
 
+	void setup(SPK::Emitter *emitter, SPK::Group *group);
 	void dispose();
 
-	void update();
+	void setEmitter(SPK::Emitter *emitter);
+	SPK::Emitter* getEmitter() { return emitter; }
 
 	void setZone(SPK::Zone *o, bool full = true);
-
-	void setFlow(float flow) { emitter->setFlow(flow); }
-	void setForce(float min, float max) { emitter->setForce(min, max); }
-
-	// only Spheric [0. - 1.]
-	void setAngles(float angle0, float angle1);
+	SPK::Zone* getZone() { return emitter->getZone(); }
 	
-	void emit(int num_emit, SPK::Group *group);
+	template <typename T>
+	T* getZoneAs() { return (T*)emitter->getZone(); }
+
+	void setActive(bool active) { emitter->setActive(active); }
+	bool isActive() { return emitter->isActive(); }
+	
+	void setFlow(float flow) { emitter->setFlow(flow); }
+	float getFlow() { return emitter->getFlow(); }
+	
+	void setTank(int num) { emitter->setTank(num); }
+	int getTank() { return emitter->getTank(); }
+
+	void setForce(float min, float max) { emitter->setForce(min, max); }
+	void setForce(const RangeF& force) { emitter->setForce(force.min, force.max); }
+	RangeF getForce() { return RangeF(emitter->getForceMin(), emitter->getForceMax()); }
 
 	operator SPK::Emitter* const () { return emitter; }
-	SPK::Emitter* get() const { return emitter; }
+	SPK::Emitter* operator->() const { return emitter; }
+	
 	template <typename T> T* get() { return (T*)emitter; }
 
+	static SPK::Transformable* getTransformable(ofxSPK::Emitter *self) { return self->emitter; }
+	
 protected:
 
 	SPK::Emitter *emitter;
-	Type type;
+	SPK::Group *group;
 
-	void customDraw()
-	{
-		// TODO: draw emitter
-		ofDrawAxis(50);
-	}
-
-private:
-
-	void guessType();
 };
 
-}

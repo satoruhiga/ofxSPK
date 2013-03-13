@@ -7,18 +7,26 @@
 
 namespace ofxSPK
 {
+	class System;
+}
 
-class System
+class ofxSPK::System
 {
 public:
 
 	System() : system(NULL) {}
-	virtual ~System() { dispose(); }
+	System(SPK::System *system) : system(system) {}
 
 	void setup()
 	{
 		if (system) return;
 		system = SPK::System::create();
+	}
+
+	void dispose()
+	{
+		SPK_Destroy(system);
+		system = NULL;
 	}
 
 	void update(float tick = ofGetLastFrameTime())
@@ -32,12 +40,16 @@ public:
 		assert(system);
 		system->render();
 	}
-
-	SPK::Group* createGroup();
+	
+	void debugDraw();
+	
+	void addGroup(SPK::Group *group);
 	void removeGroup(SPK::Group *group);
+	
+	void clear();
 
-	operator SPK::System* () const { return system; }
-	SPK::System* get() const { return system; }
+	operator SPK::System*() const { return system; }
+	SPK::System* operator->() const { return system; }
 
 private:
 
@@ -46,12 +58,4 @@ private:
 	System(const System &copy) {}
 	System& operator=(const System &copy) {}
 
-	void dispose()
-	{
-		SPK_Destroy(system);
-		system = NULL;
-	}
-
 };
-
-}

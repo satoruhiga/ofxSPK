@@ -33,5 +33,7 @@ namespace ofxSPK
 	protected:
 		
 		ofShader shader;
+		
+		float getCurrentFov();
 	};
 }

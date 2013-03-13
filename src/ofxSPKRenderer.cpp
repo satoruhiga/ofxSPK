@@ -39,9 +39,28 @@ ofxSPK::Renderer::Renderer() : SPK::Renderer()
 	shader.linkProgram();
 }
 
+float ofxSPK::Renderer::getCurrentFov()
+{
+	GLfloat m[16];
+	GLint viewport[4];
+	
+	glGetFloatv(GL_PROJECTION_MATRIX, m);
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	
+	float aspect = (float)viewport[2] / viewport[3];
+	
+	// m[0] / aspect = cot(fovy / 2)
+	
+	float a = (m[0] * aspect);
+	float fov = (atan(a) - M_PI_2) * -2;
+	
+	return fov;
+}
+
 void ofxSPK::Renderer::render(const SPK::Group& group)
 {
-	float pixel_per_unit = fabs(ofGetViewportHeight() / (2.0f * std::tan(60. * 0.5f)));
+	float fov = getCurrentFov();
+	float pixel_per_unit = fabs(ofGetViewportHeight() / (2.0f * std::tan(fov * 0.5f)));
 	
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	ofPushStyle();
