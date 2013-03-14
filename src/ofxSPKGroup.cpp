@@ -65,6 +65,11 @@ ofVec3f ofxSPK::Group::getGravity() const
 	return toOF(group->getGravity());
 }
 
+void ofxSPK::Group::emit(int num_emit, const ofVec3f& pos, const ofVec3f& direction)
+{
+	group->addParticles(num_emit, toSPK(pos), toSPK(direction));
+}
+
 void ofxSPK::Group::emitStatic(int num_emit, const ofVec3f& pos)
 {
 	static SPK::StaticEmitter em;

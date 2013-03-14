@@ -51,8 +51,6 @@ protected:
 	void onScaleChanged() { updateTransform(); }
 };
 	
-}
-
 inline SPK::Vector3D toSPK(const ofVec3f &v)
 {
 	return SPK::Vector3D(v.x, v.y, v.z);
@@ -67,3 +65,8 @@ inline ofVec3f toOF(const SPK::Vector3D &v)
 {
 	return ofVec3f(v.x, v.y, v.z);
 }
+
+}
+
+using ofxSPK::toSPK;
+using ofxSPK::toOF;

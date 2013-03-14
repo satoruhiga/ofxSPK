@@ -65,6 +65,7 @@ public:
 	
 	//
 
+	void emit(int num_emit, const ofVec3f& pos, const ofVec3f& direction);
 	void emitStatic(int num_emit, const ofVec3f& pos);
 	void emitRandom(int num_emit, const ofVec3f& pos, const RangeF& vel = RangeF(0, 30));
 	void emitStraight(int num_emit, const ofVec3f& pos, const RangeF& vel = RangeF(0, 30), const ofVec3f& direction = ofVec3f(0, 1, 0));

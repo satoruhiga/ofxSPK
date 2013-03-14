@@ -23,10 +23,10 @@
 #include "Extensions/Emitters/SPK_SphericEmitter.h"
 #include "Core/SPK_Particle.h"
 
+const float PI = 3.1415926535897932384626433832795f;
+
 namespace SPK
 {
-	const float SphericEmitter::PI = 3.1415926535897932384626433832795f;
-
 	SphericEmitter::SphericEmitter(const Vector3D& direction,float angleA,float angleB) :
 		Emitter()
 	{

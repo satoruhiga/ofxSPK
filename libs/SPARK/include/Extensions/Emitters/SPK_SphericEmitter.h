@@ -25,10 +25,6 @@
 
 #include "Core/SPK_Emitter.h"
 
-#ifdef PI
-#undef PI
-#endif
-
 namespace SPK
 {
 	/**
@@ -135,8 +131,6 @@ namespace SPK
 		virtual void innerUpdateTransform();
 
 	private :
-
-		static const float PI;
 
 		Vector3D direction;
 		Vector3D tDirection; // transformed direction
