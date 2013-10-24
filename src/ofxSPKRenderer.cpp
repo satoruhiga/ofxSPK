@@ -37,6 +37,9 @@ ofxSPK::Renderer::Renderer() : SPK::Renderer()
 	
 	shader.setupShaderFromSource(GL_VERTEX_SHADER, vs);
 	shader.linkProgram();
+	
+	has_life_attr = shader.getAttributeLocation("life") > 0;
+	has_point_size_attr = shader.getAttributeLocation("point_size") > 0;
 }
 
 float ofxSPK::Renderer::getCurrentFov()
@@ -48,8 +51,6 @@ float ofxSPK::Renderer::getCurrentFov()
 	glGetIntegerv(GL_VIEWPORT, viewport);
 	
 	float aspect = (float)viewport[2] / viewport[3];
-	
-	// m[0] / aspect = cot(fovy / 2)
 	
 	float a = (m[0] * aspect);
 	float fov = (atan(a) - M_PI_2) * -2;
@@ -80,7 +81,7 @@ void ofxSPK::Renderer::render(const SPK::Group& group)
 	glVertexPointer(3, GL_FLOAT, group.getPositionStride(), group.getPositionAddress());
 	
 	int point_size_loc = 0;
-	if (group.getModel()->isEnabled(PARAM_SIZE))
+	if (has_point_size_attr && group.getModel()->isEnabled(PARAM_SIZE))
 	{
 		point_size_loc = shader.getAttributeLocation("point_size");
 		glVertexAttribPointer(point_size_loc, 1, GL_FLOAT, false, group.getParamStride(), group.getParamAddress(PARAM_SIZE));
@@ -89,7 +90,7 @@ void ofxSPK::Renderer::render(const SPK::Group& group)
 	}
 	
 	int life_loc = 0;
-	if (group.getModel()->isEnabled(PARAM_CUSTOM_0))
+	if (has_life_attr && group.getModel()->isEnabled(PARAM_CUSTOM_0))
 	{
 		life_loc = shader.getAttributeLocation("life");
 		glVertexAttribPointer(life_loc, 1, GL_FLOAT, false, group.getParamStride(), group.getParamAddress(PARAM_CUSTOM_0));
@@ -108,7 +109,7 @@ void ofxSPK::Renderer::render(const SPK::Group& group)
 	{
 		glDisableVertexAttribArray(life_loc);
 	}
-	
+
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
 	

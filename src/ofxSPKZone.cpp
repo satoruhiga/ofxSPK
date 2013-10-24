@@ -66,7 +66,7 @@ void ofxSPK::Zone::debugDraw(const string &transformable_class_name, const SPK::
 		ofLine(b0.x, b0.y, b0.z,
 			   b1.x, b1.y, b1.z);
 		
-		text_pos = toOF(b0).middle(toOF(b1));
+		text_pos = toOf(b0).middle(toOf(b1));
 	}
 	else if (class_name == "Sphere")
 	{
@@ -132,13 +132,13 @@ void ofxSPK::Zone::debugDraw(const string &transformable_class_name, const SPK::
 		
 		ofMatrix4x4 m = mat.getRotate().inverse();
 		
-		ofVec3f v = mat.getRotate() * toOF(p);
+		ofVec3f v = mat.getRotate() * toOf(p);
 		m.glTranslate(v);
 		m.glScale(n.x, n.y, n.z);
 		
 		glMultMatrixf(m.getPtr());
 		
-		ofBox(1);
+		ofDrawBox(1);
 	}
 	
 	ofSetColor(text_color);

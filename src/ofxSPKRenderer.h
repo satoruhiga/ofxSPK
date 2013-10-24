@@ -35,5 +35,7 @@ namespace ofxSPK
 		ofShader shader;
 		
 		float getCurrentFov();
+		
+		bool has_life_attr, has_point_size_attr;
 	};
 }

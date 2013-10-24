@@ -62,7 +62,7 @@ void ofxSPK::Group::setGravity(const ofVec3f& v)
 
 ofVec3f ofxSPK::Group::getGravity() const
 {
-	return toOF(group->getGravity());
+	return toOf(group->getGravity());
 }
 
 void ofxSPK::Group::emit(int num_emit, const ofVec3f& pos, const ofVec3f& direction)

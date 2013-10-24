@@ -61,7 +61,7 @@ inline SPK::Vector3D toSPK(float x, float y, float z)
 	return SPK::Vector3D(x, y, z);
 }
 
-inline ofVec3f toOF(const SPK::Vector3D &v)
+inline ofVec3f toOf(const SPK::Vector3D &v)
 {
 	return ofVec3f(v.x, v.y, v.z);
 }
@@ -69,4 +69,4 @@ inline ofVec3f toOF(const SPK::Vector3D &v)
 }
 
 using ofxSPK::toSPK;
-using ofxSPK::toOF;
+using ofxSPK::toOf;
